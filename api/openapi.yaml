@@ -1,0 +1,144 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: lampralexandros@gmail.com
+  description: This is a sample openApi document
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: https://wabli.netlify.app/
+  title: TempApi
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+- description: Local server
+  url: http://localhost:8080/v1
+security:
+- {}
+tags:
+- description: not yet ready
+  name: user
+paths:
+  /user:
+    post:
+      operationId: createuser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user'
+        description: data to be created
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+          description: seccessful operation
+      summary: Creates the data
+      tags:
+      - user
+      x-eov-operation-handler: controllers/UserController
+  /user/{userId}:
+    delete:
+      operationId: deleteuser
+      parameters:
+      - description: the Id parameter
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: successful operation
+      summary: Delete the element
+      tags:
+      - user
+      x-eov-operation-handler: controllers/UserController
+    get:
+      operationId: getuser
+      parameters:
+      - description: the Id parameter
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+          description: seccessful operation
+      summary: Get the element
+      tags:
+      - user
+      x-eov-operation-handler: controllers/UserController
+    put:
+      operationId: updateuser
+      parameters:
+      - description: the Id parameter
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user'
+        description: data to be updated
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+          description: seccessful operation
+      summary: Updates the element
+      tags:
+      - user
+      x-eov-operation-handler: controllers/UserController
+  /user/getAll:
+    get:
+      operationId: getAlluser
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/user'
+                type: array
+          description: successful operation
+      summary: Get all the data
+      tags:
+      - user
+      x-method-getAll: "true"
+      x-eov-operation-handler: controllers/UserController
+components:
+  schemas:
+    user:
+      example:
+        _id: _id
+        userName: userName
+      properties:
+        _id:
+          type: string
+        userName:
+          type: string
+      required:
+      - userName
+      type: object
