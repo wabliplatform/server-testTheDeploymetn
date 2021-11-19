@@ -13,8 +13,8 @@ externalDocs:
   description: Find out more about Swagger
   url: http://swagger.io
 servers:
-- description: Local server
-  url: http://localhost:8080/v1
+- description: laughing-invention
+  url: https://wabli-laughing-invention.cyclopt.services:3000/v1
 security:
 - {}
 tags:
